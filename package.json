@@ -1,19 +1,15 @@
 {
   "name": "luminous-gulp",
-  "version": "0.1.0-alpha.0",
-  "description": "The gulp tasks for Luminous.",
+  "version": "0.1.0-alpha.1",
+  "description": "Gulp tasks for Luminous.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hrslash/luminous-gulp"
-  },
+  "repository": "hrslash/luminous-gulp",
   "author": {
     "name": "Takeru Hirose",
-    "email": "info@hrslash.com",
-    "homepage": "http://hrslash.com"
+    "email": "takeru0757@gmail.com"
   },
   "license": "MIT",
   "dependencies": {
@@ -21,7 +17,6 @@
     "del": "^2.0.2",
     "event-stream": "^3.3.1",
     "globby": "^3.0.1",
-    "gulp": "^3.8.8",
     "gulp-autoprefixer": "^3.0.1",
     "gulp-coffee": "^2.3.1",
     "gulp-filter": "^3.0.1",
@@ -38,12 +33,17 @@
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.4.1",
+    "gulp-util": "^3.0.6",
     "lodash": "^3.10.1",
+    "run-sequence": "^1.1.3",
+    "through2": "^2.0.0",
+    "tildify": "^1.1.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.3",
-    "eslint": "^1.4.3"
+    "eslint": "^1.4.3",
+    "gulp": "^3.8.8"
   }
 }

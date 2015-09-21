@@ -1,0 +1,14 @@
+$fa-font-path: '/vendor/font-awesome';
+@import '../vendor/font-awesome/scss/font-awesome';
+
+.test-function {
+  background: lighten(#000, 10%);
+}
+
+.test-img-01 {
+  background: url(/img/test.png);
+}
+
+.test-img-02 {
+  background: url(/img/foo/test.png);
+}

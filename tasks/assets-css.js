@@ -8,7 +8,6 @@ var autoprefixer = require('gulp-autoprefixer');
 var minifyCss = require('gulp-minify-css');
 var sass = require('gulp-sass');
 var less = require('gulp-less');
-var handleError = require('../handle-error');
 var buildAssets = require('./assets').build;
 
 module.exports = function (lg) {
@@ -27,7 +26,8 @@ module.exports = function (lg) {
     del.sync(config.tmpPath);
 
     return gulp.src(config.src)
-      .pipe(handleError())
+      .pipe(lg.report('assets-css:prepare', config.src, config.tmpPath))
+      .pipe(lg.plumber())
       .pipe(sourcemaps.init())
       .pipe(gulpIf(/\.scss$/i, sass(config.sassOptions)))
       .pipe(gulpIf(/\.less$/i, less(config.lessOptions)))

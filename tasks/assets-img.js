@@ -3,7 +3,6 @@
 var gulp = require('gulp');
 var del = require('del');
 var imagemin = require('gulp-imagemin');
-var handleError = require('../handle-error');
 var buildAssets = require('./assets').build;
 
 module.exports = function (lg) {
@@ -22,7 +21,8 @@ module.exports = function (lg) {
     del.sync(config.tmpPath);
 
     return gulp.src(config.src)
-      .pipe(handleError())
+      .pipe(lg.report('assets-img:prepare', config.src, config.tmpPath))
+      .pipe(lg.plumber())
       .pipe(imagemin(config.imageminOptions))
       .pipe(gulp.dest(config.tmpPath));
   });

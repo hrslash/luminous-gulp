@@ -1,19 +1,17 @@
 'use strict';
 
-var gulp = require('gulp');
 var path = require('path');
+var gulp = require('gulp');
 var del = require('del');
 var _ = require('lodash');
+var es = require('event-stream');
 var globby = require('globby');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
-var eventStream = require('event-stream');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
-var notify = require('gulp-notify');
-var handleError = require('../handle-error');
 var buildAssets = require('./assets').build;
 
 module.exports = function (lg) {
@@ -32,6 +30,12 @@ module.exports = function (lg) {
     del.sync(config.tmpPath);
 
     globby(config.src).then(function (files) {
+      lg.report.log('assets-js:prepare', config.src, config.tmpPath, files);
+
+      if (files.length < 1) {
+        return cb();
+      }
+
       var tasks = files.map(function (entry) {
         var opts = _.assign({}, config.browserifyOptions, {
           entries: [entry],
@@ -39,9 +43,9 @@ module.exports = function (lg) {
         });
 
         return browserify(opts)
-          .bundle().on('error', notify.onError("Error: <%= error.message %>"))
+          .bundle().on('error', lg.onError())
           .pipe(source(path.relative(config.srcPath, entry)))
-          .pipe(handleError())
+          .pipe(lg.plumber())
           .pipe(rename({extname: '.js'}))
           .pipe(buffer())
           .pipe(sourcemaps.init({loadMaps: true}))
@@ -50,7 +54,7 @@ module.exports = function (lg) {
           .pipe(gulp.dest(config.tmpPath));
       });
 
-      eventStream.merge(tasks).on('end', cb);
+      es.merge(tasks).on('end', cb);
     });
   });
 };

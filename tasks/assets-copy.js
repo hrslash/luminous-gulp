@@ -3,8 +3,7 @@
 var gulp = require('gulp');
 var del = require('del');
 var _ = require('lodash');
-var eventStream = require('event-stream');
-var handleError = require('../handle-error');
+var es = require('event-stream');
 var buildAssets = require('./assets').build;
 
 module.exports = function (lg) {
@@ -14,7 +13,8 @@ module.exports = function (lg) {
     del.sync(target.tmpPath);
 
     return gulp.src(target.src)
-      .pipe(handleError())
+      .pipe(lg.report('assets-copy:prepare (' + target.dir + ')', target.src, target.tmpPath))
+      .pipe(lg.plumber())
       .pipe(gulp.dest(target.tmpPath));
   };
 
@@ -34,7 +34,11 @@ module.exports = function (lg) {
 
   // prepare task
   lg.task('assets-copy:prepare', function (cb) {
+    if (targets.length < 1) {
+      return cb();
+    }
+
     var tasks = targets.map(copy);
-    eventStream.merge(tasks).on('end', cb);
+    es.merge(tasks).on('end', cb);
   });
 };
