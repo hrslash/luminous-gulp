@@ -1,5 +1,7 @@
 # luminous-gulp
 
+**This project is still under development.**
+
 This project is part of [Luminous](https://github.com/hrslash/luminous).
 
 ## License
