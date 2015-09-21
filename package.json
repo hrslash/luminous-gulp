@@ -1,7 +1,7 @@
 {
   "name": "luminous-gulp",
-  "version": "0.1.0-alpha.2",
-  "description": "Gulp tasks for Luminous.",
+  "version": "0.1.0-alpha.3",
+  "description": "[under development] Gulp tasks for Luminous.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
