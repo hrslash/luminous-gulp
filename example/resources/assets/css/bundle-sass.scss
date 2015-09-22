@@ -6,9 +6,17 @@ $fa-font-path: '/vendor/font-awesome';
 }
 
 .test-img-01 {
+  background: url(../img/test.png);
+}
+
+.test-img-01-abs {
   background: url(/img/test.png);
 }
 
 .test-img-02 {
+  background: url(../img/foo/test.png);
+}
+
+.test-img-02-abs {
   background: url(/img/foo/test.png);
 }
