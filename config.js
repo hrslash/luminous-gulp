@@ -14,7 +14,7 @@ var config = {};
 
 config.assets = {
   url: '/assets',
-  publicPath: './assets',
+  publicPath: './public/assets',
   srcPath: './resources/assets',
   tmpPath: './storage/framework/assets',
 
