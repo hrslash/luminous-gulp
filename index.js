@@ -78,7 +78,7 @@ LuminousGulp.onError = function () {
 
 // https://www.npmjs.com/package/gulp-plumber
 LuminousGulp.plumber = function () {
-  return plumber({ errorHandler: LuminousGulp.onError });
+  return plumber({ errorHandler: LuminousGulp.onError() });
 };
 
 // https://www.npmjs.com/package/gulp-livereload

@@ -10,6 +10,6 @@
     "luminous-gulp": "file:../"
   },
   "browserify-shim": {
-    "global-jquery": "global:jQuery"
+    "jquery": "global:jQuery"
   }
 }
